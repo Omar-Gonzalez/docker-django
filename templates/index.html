@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>docker-django</title>
+    <link rel="stylesheet" href="{% static 'test.css' %}">
+</head>
+<body>
+<div class="title">
+    <p>Docker Django</p>
+</div>
+<div class="content">
+    <a onclick="window.testAlert()">Test Static JS</a>
+    <p>&copy; Omar Gonzalez {% now "Y" %}</p>
+</div>
+</body>
+<script type="text/javascript" src="{% static 'test.js' %}"></script>
+</html>

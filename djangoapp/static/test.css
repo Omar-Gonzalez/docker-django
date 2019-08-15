@@ -1,0 +1,29 @@
+html, body {
+    margin: 0px;
+    background-color: whitesmoke;
+    font-family: Arial;
+}
+
+.title {
+    background-color: #0C4B33;
+    color: whitesmoke;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+}
+
+.title p {
+    font-size: 20px;
+}
+
+.content {
+    text-align: center;
+    width: 100%;
+    padding: 15px;
+    font-size: 15px;
+}
+
+.content a {
+    color: #51BE95;
+    cursor: pointer;
+}
