@@ -1,10 +1,7 @@
 DEBUG=1
-SECRET_KEY=change_secret_key
-
+SECRET_KEY=smells like kitten
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=changeme
 POSTGRES_DB=django
 DB_HOST=db
-DB_PORT=5432
-
-NGINX_EXT_PORT=80
+DB_PORT=5432    

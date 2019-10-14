@@ -12,16 +12,16 @@ services:
       - POSTGRES_DB=$POSTGRES_DB
     ports:
       - ${DB_PORT}:${DB_PORT}
-  django:
+  web:
     restart: always
     env_file: .env
     build: ""
-    command: $RUN_COMMAND
+    command: bash -c "python manage.py collectstatic --noinput && gunicorn djangoapp.wsgi:application --bind 0.0.0.0:8000"
     volumes:
       - .:/src
       - ./static
     ports:
-      - ${APP_PORT}:${APP_PORT}
+      - 8000:8000
     environment:
       - DEBUG=$DEBUG
       - POSTGRES_USER=$POSTGRES_USER
@@ -30,6 +30,14 @@ services:
       - SECRET_KEY=$SECRET_KEY
     depends_on:
       - db
+  nginx:
+    image: nginx:1.14.2
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    depends_on:
+      - web
 
 volumes:
   pgdata:
