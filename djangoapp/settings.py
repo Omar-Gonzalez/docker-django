@@ -24,11 +24,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(os.environ.get('DEBUG'))
+DEBUG = True if os.environ.get('DEBUG') == 'True' else False
 
 ALLOWED_HOSTS = [
     'localhost',
-    '127.0.0.1'
 ]
 
 # Application definition
@@ -129,5 +128,6 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),
 ]
 
-if DEBUG == False:
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+db = os.environ.get('POSTGRES_DB')
+port = os.environ.get('DB_PORT')
+print(f"Running Django with settings: \n - DEBUG = {DEBUG} \n - DB={db} at PORT = {port}")
