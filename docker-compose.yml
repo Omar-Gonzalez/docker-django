@@ -12,6 +12,7 @@ services:
       - POSTGRES_DB=$POSTGRES_DB
     ports:
       - ${DB_PORT}:${DB_PORT}
+    command: -p ${DB_PORT}
   web:
     restart: always
     env_file: .env
