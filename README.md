@@ -2,17 +2,24 @@
 
 ## Project goal
 
-I wanted a bootstrap project for my contractor & personal work with the Django-Framework
+I wanted a bootstrap project for my contractor & personal work with the Django-Framework. 
+This configuration can be easily use in any of the major cloud providers like AWS, DO or Azure. 
 
 ## Static Files
 
-* docker-compose.yml & nginx.conf have nginx configured and ready to serve static files 
+* Uses Nginx as a reverse proxy and whitenoise for static files 
 
 ## Usage
 
+### Production
+
 * Just set up your .env file following env-example
 * docker-compose up
-* Check docker-compose and env variables everything is pretty much self-explanatory
+
+### Development
+
+* You can run the project locally, and use the composer dev file to launch a Postgres instance
+* Check the docker-compose dev file and env variables. Everything is pretty much self-explanatory
 
 ## License
 
