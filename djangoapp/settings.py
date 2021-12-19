@@ -28,6 +28,7 @@ DEBUG = True if os.environ.get('DEBUG') == 'True' else False
 
 ALLOWED_HOSTS = [
     'localhost',
+    '127.0.0.1'
 ]
 
 # Application definition
@@ -74,15 +75,18 @@ WSGI_APPLICATION = 'djangoapp.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+DB_HOST = 'db' if os.environ.get('ENVIRONMENT') == 'prod' else 'localhost'
+DB_NAME = os.environ.get('POSTGRES_DB')
+DB_PORT = os.environ.get('DB_PORT')
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB'),
+        'NAME': DB_NAME,
         'USER': os.environ.get('POSTGRES_USER'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': int(os.environ.get('DB_PORT')),
+        'HOST': DB_HOST,
+        'PORT': DB_PORT,
     }
 }
 
@@ -119,7 +123,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
@@ -128,6 +132,5 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),
 ]
 
-db = os.environ.get('POSTGRES_DB')
-port = os.environ.get('DB_PORT')
-print(f"Running Django with settings: \n - DEBUG = {DEBUG} \n - DB={db} at PORT = {port}")
+print(f"Running Django with settings: \n - DEBUG = {DEBUG} \n - DB={DB_NAME} at = {DB_HOST}:{DB_PORT}")
+
